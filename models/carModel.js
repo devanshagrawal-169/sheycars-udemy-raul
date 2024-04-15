@@ -16,7 +16,18 @@ const carSchema = new mongoose.Schema(
 
     rentPerHour: { type: Number, required: true },
   },
-  { timestamps: true }
+  { timestamps: true },
+  
 );
+
+carSchema.pre('save', function(next) {
+  // Check if the city field is modified or is new
+  if (this.isModified('city') || this.isNew) {
+    // Capitalize the first letter of the city value
+    this.city = this.city.charAt(0).toUpperCase() + this.city.slice(1).toLowerCase();
+  }
+  next();
+});
+
 const carModel = mongoose.model('cars', carSchema);
 module.exports = carModel;

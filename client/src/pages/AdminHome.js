@@ -42,8 +42,19 @@ function AdminHome() {
         {totalCars.map((car) => {
           return (
             <Col lg={5} sm={24} xs={24}>
-              <div className="car p-2 bs1">
-                <img src={car.image} className="carimg" />
+              <div className="flex w-[300px] flex-col items-center justify-between hover:scale-101 transition duration-300 ease-in shadow-[0_3px_10px_rgb(0,0,0,0.2)] hover:shadow-[rgba(0,_0,_0,_0.3)_0px_20px_40px] gap-3 p-3 py-4 rounded-xl ml-10 mt-5 ">
+              <div>
+                  <p className="text-gray-700 font-semibold text-lg text-left truncate w-40 mt-1">
+                    {car.name}
+                  </p>
+                </div>
+                <div className="h-[180px]">
+                  <img
+                    src={car.image}
+                    alt="carimage"
+                    className="h-full w-full"
+                  />
+                </div>
 
                 <div className="car-content d-flex align-items-center justify-content-between">
                   <div className="text-left pl-2">

@@ -9,6 +9,7 @@ router.post("/login", async(req, res) => {
 
       try {
           const user = await User.findOne({username , password})
+          console.log(user)
           if(user) {
               res.send(user)
           }

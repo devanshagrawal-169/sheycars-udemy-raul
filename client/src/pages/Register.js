@@ -57,13 +57,17 @@ function Register() {
             <Form.Item
               name="password"
               label="Password"
-              rules={[{ required: true }]}
+              rules={[{ required: true }]
+              }
+              minLength={5}required
             >
               <Input />
             </Form.Item>
             <Form.Item
               name="cpassword"
               label="Confirm Password"
+              minLength={5}
+              required
               rules={[{ required: true }]}
             >
               <Input />

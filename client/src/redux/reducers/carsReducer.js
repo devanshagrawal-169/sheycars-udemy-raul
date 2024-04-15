@@ -1,6 +1,5 @@
 const initialData = {
     cars : [],
-    location:"",
 
 };
 
@@ -14,12 +13,7 @@ export const carsReducer = (state=initialData , action)=>{
                  cars : action.payload
              }
             }
-         case 'setLocation':{
-            return {
-                ...state,
-                location:action.payload
-            }
-         }
+        
          
          default:return state
      }

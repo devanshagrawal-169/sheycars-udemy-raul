@@ -14,6 +14,8 @@ function UserBookings() {
     dispatch(getAllBookings());
   }, []);
 
+  console.log(bookings)
+
   return (
     <DefaultLayout>
       {loading && <Spinner />}
@@ -22,8 +24,9 @@ function UserBookings() {
       <Row justify="center" gutter={16}>
         <Col lg={16} sm={24}>
           {bookings
-            .filter((o) => o.user == user._id)
+            .filter((o) => o.user === user._id)
             .map((booking) => {
+              
               return (
                 <Row gutter={16} className="bs1 mt-3 text-left">
                   <Col lg={6} sm={24}>
