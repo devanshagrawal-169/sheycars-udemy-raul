@@ -14,9 +14,9 @@ router.get("/getallcars", async (req, res) => {
 router.post("/addcar", async (req, res) => {
   try {
     const newcar = new Car(req.body);
-    await newcar.save();
+    await newcar.save(); 
     res.send("Car added successfully");
-  } catch (error) {
+  } catch (error) { 
     return res.status(400).json(error);
   }
 });
@@ -29,6 +29,7 @@ router.post("/editcar", async (req, res) => {
     car.fuelType = req.body.fuelType;
     car.rentPerHour = req.body.rentPerHour;
     car.capacity = req.body.capacity;
+    car.city = req.body.city;
 
     await car.save();
 

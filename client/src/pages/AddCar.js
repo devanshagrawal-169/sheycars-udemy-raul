@@ -28,6 +28,9 @@ function AddCar() {
                            <Form.Item name='name' label='Car name' rules={[{required: true}]}>
                                <Input/>
                            </Form.Item>
+                           <Form.Item name='city' label='City' rules={[{required: true}]}>
+                               <Input/>
+                           </Form.Item>
                            <Form.Item name='image' label='Image url' rules={[{required: true}]}>
                                <Input/>
                            </Form.Item>

@@ -28,7 +28,7 @@ function App() {
              <ProtectedRoute path='/editcar/:carid' exact component={EditCar} />
              <ProtectedRoute path='/admin' exact component={AdminHome} />
          
-         </BrowserRouter>
+         </BrowserRouter> 
 
     </div>
   );

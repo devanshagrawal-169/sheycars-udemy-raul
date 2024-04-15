@@ -15,7 +15,7 @@ function EditCar({ match }) {
       dispatch(getAllCars());
     } else {
       settotalcars(cars);
-      setcar(cars.find((o) => o._id == match.params.carid));
+      setcar(cars.find((o) => o._id === match.params.carid));
       console.log(car);
     }
   }, [cars]);
@@ -66,6 +66,13 @@ function EditCar({ match }) {
               <Form.Item
                 name="capacity"
                 label="Capacity"
+                rules={[{ required: true }]}
+              >
+                <Input />
+              </Form.Item>
+              <Form.Item
+                name="city"
+                label="City"
                 rules={[{ required: true }]}
               >
                 <Input />

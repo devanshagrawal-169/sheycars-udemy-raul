@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import DefaultLayout from "../components/DefaultLayout";
-import { deleteCar, getAllCars } from "../redux/actions/carsActions";
-import { Col, Row, Divider, DatePicker, Checkbox, Edit } from "antd";
-import { Link } from "react-router-dom";
-import Spinner from "../components/Spinner";
-import moment from "moment";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Popconfirm, message } from "antd";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import DefaultLayout from '../components/DefaultLayout';
+import { deleteCar, getAllCars } from '../redux/actions/carsActions';
+import { Col, Row, Divider, DatePicker, Checkbox, Edit } from 'antd';
+import { Link } from 'react-router-dom';
+import Spinner from '../components/Spinner';
+import moment from 'moment';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { Popconfirm, message } from 'antd';
 const { RangePicker } = DatePicker;
 function AdminHome() {
   const { cars } = useSelector((state) => state.carsReducer);
@@ -28,7 +28,7 @@ function AdminHome() {
       <Row justify="center" gutter={16} className="mt-2">
         <Col lg={20} sm={24}>
           <div className="d-flex justify-content-between align-items-center">
-            <h3 className="mt-1 mr-2">Admin Panel</h3>
+            <h1 className="text-center mt-2">Admin Panel</h1>
             <button className="btn1">
               <a href="/addcar">ADD CAR</a>
             </button>
@@ -36,7 +36,7 @@ function AdminHome() {
         </Col>
       </Row>
 
-      {loading == true && <Spinner />}
+      {loading === true && <Spinner />}
 
       <Row justify="center" gutter={16}>
         {totalCars.map((car) => {
@@ -55,19 +55,20 @@ function AdminHome() {
                     <Link to={`/editcar/${car._id}`}>
                       <EditOutlined
                         className="mr-3"
-                        style={{ color: "green", cursor: "pointer" }}
+                        style={{ color: 'green', cursor: 'pointer' }}
                       />
                     </Link>
 
                     <Popconfirm
                       title="Are you sure to delete this car?"
-                      onConfirm={()=>{dispatch(deleteCar({carid : car._id}))}}
-                      
+                      onConfirm={() => {
+                        dispatch(deleteCar({ carid: car._id }));
+                      }}
                       okText="Yes"
                       cancelText="No"
                     >
                       <DeleteOutlined
-                        style={{ color: "red", cursor: "pointer" }}
+                        style={{ color: 'red', cursor: 'pointer' }}
                       />
                     </Popconfirm>
                   </div>
