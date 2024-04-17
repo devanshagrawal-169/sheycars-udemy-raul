@@ -85,7 +85,8 @@ bookingEmail = (carName, name,image) => {
           <div class="message">Booking  Confirmation</div>
           <div class="body">
               <p>Dear ${name},</p>
-              <p>Welcome aboard to Hayabusa, our premier car rental service! Your registration is now complete, marking the beginning of your journey with us. We're delighted to have you as part of our community and look forward to providing you with exceptional service and unforgettable experiences behind the wheel of our vehicles. Let's hit the road together</p>
+              <p>You have successfully registered for <span class="highlight">"${carName}"</span>. We
+                  are excited to have you as a customer!</p>
               <p>Please log in to your account to access the details and start your journey.
               </p>
               <a class="cta" href="http://localhost:5002/userbookings">Go to My Bookings</a>
