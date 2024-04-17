@@ -107,9 +107,11 @@ function Home() {
                   </div>
                   </div>
                   <div>
-                    <button className="text-gray-700 border-2 border-gray-700 rounded-full font-semibold text-[12px] p-1 px-3 uppercase hover:bg-gray-700 hover:text-white transition-all duration-200 ease-in">
-                      <Link to={`/booking/${car._id}`}>Book Now</Link>
-                    </button>
+                      <Link className="text-gray-700 border-2 border-gray-700 rounded-full font-semibold text-[12px] p-1 px-3 uppercase hover:bg-gray-700 hover:text-white transition-all duration-200 ease-in" to={`/booking/${car._id}`}>
+                        
+                            Book Now
+                       
+                      </Link>
                   </div>
                 </div>
               </div>

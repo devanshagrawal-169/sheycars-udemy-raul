@@ -15,6 +15,7 @@ const carSchema = new mongoose.Schema(
     ],
 
     rentPerHour: { type: Number, required: true },
+    uploadedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'users', required: false },
   },
   { timestamps: true },
   

@@ -13,8 +13,15 @@ export const carsReducer = (state=initialData , action)=>{
                  cars : action.payload
              }
             }
-        
-         
+
+         case 'GET_MY_CARS' : {
+             return{
+                 ...state,
+                 cars : action.payload
+             }
+            }
+
+
          default:return state
      }
 

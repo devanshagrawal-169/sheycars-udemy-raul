@@ -7,6 +7,7 @@ import { getAllCars } from '../redux/actions/carsActions';
 import moment from 'moment';
 import { bookCar } from '../redux/actions/bookingActions';
 import StripeCheckout from 'react-stripe-checkout';
+import Logo from '../../src/images/Logo-1.jpeg'
 import AOS from 'aos';
 
 import 'aos/dist/aos.css'; // You can also use <link> for styles
@@ -22,6 +23,7 @@ function BookingCar({ match }) {
   const [driver, setdriver] = useState(false);
   const [totalAmount, setTotalAmount] = useState(0);
   const [showModal, setShowModal] = useState(false);
+  const [totalDays, setTotalDays] = useState(0)
 
   useEffect(() => {
     if (cars.length == 0) {
@@ -32,17 +34,17 @@ function BookingCar({ match }) {
   }, [cars]);
 
   useEffect(() => {
-    setTotalAmount(totalHours * car.rentPerHour);
+    setTotalAmount(totalDays * car.rentPerHour);
     if (driver) {
-      setTotalAmount(totalAmount + 30 * totalHours);
+      setTotalAmount(totalAmount + 300 * totalDays);
     }
-  }, [driver, totalHours]);
+  }, [driver, totalDays]);
 
   function selectTimeSlots(values) {
     setFrom(moment(values[0]).format('MMM DD yyyy HH:mm'));
     setTo(moment(values[1]).format('MMM DD yyyy HH:mm'));
 
-    setTotalHours(values[1].diff(values[0], 'hours'));
+    setTotalDays((values[1]).diff(values[0], 'days')+1);
   }
 
   function onToken(token) {
@@ -50,7 +52,9 @@ function BookingCar({ match }) {
       token,
       user: JSON.parse(localStorage.getItem('user'))._id,
       car: car._id,
-      totalHours,
+      name:car.name,
+      image:Logo,
+      totalDays,
       totalAmount,
       driverRequired: driver,
       bookedTimeSlots: {
@@ -79,25 +83,34 @@ function BookingCar({ match }) {
           />
         </Col>
 
-        <Col lg={10} sm={24} xs={24} className="text-right">
+        <Col lg={10} sm={24} xs={24} className="text-right border-gray-700 p-2 border-2">
           <Divider type="horizontal" dashed>
-            Car Info
+            <div className='font-bold text-2xl underline' >
+
+            Vehicle Info
+            </div>
           </Divider>
-          <div style={{ textAlign: 'right' }}>
-            <p>{car.name}</p>
-            <p>{car.rentPerHour}/- Rent Per hour</p>
+          <div style={{ textAlign: 'left' }} className='border flex flex-col pl-7 '>
+            <p className='font-semibold uppercase'>{car.name}</p>
+            <p>{car.rentPerHour}/- Rent Per Day</p>
             <p>Fuel Type : {car.fuelType}</p>
             <p>Max Persons : {car.capacity}</p>
           </div>
 
-          <Divider type="horizontal" dashed>
+<div className='items-start'>
+
+          <Divider type="horizontal" dashed >
+          
+
             Select Time Slots
+          
           </Divider>
           <RangePicker
             showTime={{ format: 'HH:mm' }}
             format="MMM DD yyyy HH:mm"
             onChange={selectTimeSlots}
           />
+</div>
           <br />
           <button
             className="btn1 mt-2"
@@ -110,10 +123,10 @@ function BookingCar({ match }) {
           {from && to && (
             <div>
               <p>
-                Total Hours : <b>{totalHours}</b>
+                Total Days : <b>{totalDays}</b>
               </p>
               <p>
-                Rent Per Hour : <b>{car.rentPerHour}</b>
+                Rent Per Day : <b>{car.rentPerHour}</b>
               </p>
               <Checkbox
                 onChange={(e) => {
@@ -124,7 +137,7 @@ function BookingCar({ match }) {
                   }
                 }}
               >
-                Driver Required
+                Driver Required 
               </Checkbox>
 
               <h3>Total Amount : {totalAmount}</h3>

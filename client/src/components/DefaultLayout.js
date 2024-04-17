@@ -13,7 +13,7 @@ function DefaultLayout(props) {
   const { location } = useSelector((state) => state.locationReducer);
   const items = cars.map((car) => car.city);
   const citys = [...new Set(items)]
-  console.log(citys)
+  // console.log(citys)
   const dispatch = useDispatch();
   // const [location, setLocation] = useState(user.city);
 
@@ -32,7 +32,7 @@ function DefaultLayout(props) {
         <a href="/userbookings">Bookings</a>
       </Menu.Item>
       <Menu.Item>
-        <a href="/admin">Admin</a>
+        <a href="/admin">My vehicles</a>
       </Menu.Item>
       <Menu.Item
         onClick={() => {
@@ -49,38 +49,43 @@ function DefaultLayout(props) {
       <div className="header bs1">
         <Row gutter={16} justify="center">
           <Col lg={20} sm={24} xs={24}>
-            <div className="d-flex justify-content-between -translate-x-[65px]">
+            <div className="d-flex justify-content-between items-center -translate-x-[65px]">
               <Link to="/" style={{ color: 'orangered' }}>
                 <img src={Logo} alt="" width={250} />
               </Link>
+              <div className='flex gap-4 items-center'>
+                <form class="max-w-sm mx-auto -mt-5">
+                  <label
+                    for="countries"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Select an option
+                  </label>
+                  <div className="">
+                    <select
+                    id="countries"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    onClick={refreshCars}
+                  >
+                    <option selected value="all">Choose your city</option>
+                    {citys.map((item) => (
+                      <option value={item}>{item}</option>
+                    ))}
+                    {/* <option selected>Choose a country</option>
+                      <option value="US">United States</option>
+                      <option value="CA">Canada</option>
+                      <option value="FR">France</option>
+                      <option value="DE">Germany</option> */}
+                  </select>
 
-              <form class="max-w-sm mx-auto">
-                <label
-                  for="countries"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Select an option
-                </label>
-                <select
-                  id="countries"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  onClick={refreshCars}
-                >
-                  <option selected value="all">Choose your city</option>
-                  {citys.map((item) => (
-                    <option value={item}>{item}</option>
-                  ))}
-                  {/* <option selected>Choose a country</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="FR">France</option>
-                    <option value="DE">Germany</option> */}
-                </select>
-              </form>
+                  </div>
+                </form>
 
-              <Dropdown overlay={menu} placement="bottomCenter">
-                <Button>{user.username}</Button>
-              </Dropdown>
+                <Dropdown overlay={menu} placement="bottomCenter" className='translate-y-1' >
+                  <Button>{user.username}</Button>
+                </Dropdown>
+
+              </div>
             </div>
           </Col>
         </Row>
