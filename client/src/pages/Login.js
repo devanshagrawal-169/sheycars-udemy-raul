@@ -55,8 +55,8 @@ function Login() {
 
             <hr />
 
-            <Link to="/register">Click Here to lauda</Link>
-          </Form>
+            <Link to="/register">Click Here to Register</Link> 
+          </Form> 
         </Col>
       </Row>
     </div>

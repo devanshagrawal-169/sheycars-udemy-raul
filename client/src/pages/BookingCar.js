@@ -101,7 +101,6 @@ function BookingCar({ match }) {
 
           <Divider type="horizontal" dashed >
           
-
             Select Time Slots
           
           </Divider>
