@@ -55,8 +55,13 @@ function Login() {
 
             <hr />
 
+<<<<<<< HEAD
             <Link to="/register">Click Here to Register</Link> 
           </Form> 
+=======
+            <Link to="/register">Click Here to Register</Link>
+          </Form>
+>>>>>>> 8c242b69f06491ca9c0bb6d0f12aa83ad0a2d941
         </Col>
       </Row>
     </div>
