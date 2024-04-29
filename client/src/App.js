@@ -14,6 +14,8 @@ import EditCar from './pages/EditCar';
 function App() {
   return (
     <div className="App">
+
+         
          
          <BrowserRouter>
              
@@ -27,11 +29,15 @@ function App() {
              <ProtectedRoute path='/admin' exact component={AdminHome} />
          
          </BrowserRouter> 
+
     </div>
   );
 }
 
+
+
 export default App;
+
 
 export function ProtectedRoute(props)
 {

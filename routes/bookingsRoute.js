@@ -29,6 +29,7 @@ bookingEmail = (carName, name,image) => {
               padding: 0;
           }
   
+  
           .container {
               max-width: 600px;
               margin: 0 auto;
@@ -97,92 +98,6 @@ bookingEmail = (carName, name,image) => {
   
   </html>`;
 };
-bookingEmail = (carName, name,image) => {
-  return `<!DOCTYPE html>
-  <html>
-  
-  <head>
-      <meta charset="UTF-8">
-      <title>Booking Confirmation</title>
-      <style> 
-          body {
-              background-color: #ffffff;
-              font-family: Arial, sans-serif;
-              font-size: 16px;
-              line-height: 1.4;
-              color: #333333;
-              margin: 0;
-              padding: 0;
-          }
-  
-          .container {
-              max-width: 600px;
-              margin: 0 auto;
-              padding: 20px;
-              text-align: center;
-          }
-  
-          .logo {
-              max-width: 200px;
-              margin-bottom: 20px;
-          }
-  
-          .message {
-              font-size: 18px;
-              font-weight: bold;
-              margin-bottom: 20px;
-          }
-  
-          .body {
-              font-size: 16px;
-              margin-bottom: 20px;
-          }
-  
-          .cta {
-              display: inline-block;
-              padding: 10px 20px;
-              background-color: #FFD60A;
-              color: #000000;
-              text-decoration: none;
-              border-radius: 5px;
-              font-size: 16px;
-              font-weight: bold;
-              margin-top: 20px;
-          }
-  
-          .support {
-              font-size: 14px;
-              color: #999999;
-              margin-top: 20px;
-          }
-  
-          .highlight {
-              font-weight: bold;
-          }
-      </style>
-  
-  </head>
-  
-  <body>
-      <div class="container">
-          <a href="http://localhost:5002/"><img class="logo" src="https://res.cloudinary.com/dzyvjmnbu/image/upload/v1713371148/xkm5pnhgnmv04jvp4xwo.jpg"
-                  alt="RoadConnect Logo"></a>
-          <div class="message">Booking  Confirmation</div>
-          <div class="body">
-              <p>Dear ${name},</p>
-              <p>Please make ensure to check whether the vehicle <span class="highlight">"${carName}"</span> is fully functional or not . We
-                  will contact you as soon as possible!</p>
-              <p>Please log in to your account to access the details and start your journey.
-              </p>
-              <a class="cta" href="http://localhost:5002/userbookings">Go to My Bookings</a>
-          </div> 
-          <div class="support">If you have any questions or need assistance, please feel free to reach out to us at <a
-                  href="mailto:info@roadconnect.com">info@roadconnect.com</a>. We are here to help!</div>
-      </div>
-  </body>
-  
-  </html>`;
-};
 
 router.post('/bookcar', async (req, res) => {
   const { token } = req.body;
@@ -216,18 +131,11 @@ router.post('/bookcar', async (req, res) => {
       await car.save();
       res.send('Your booking is successfull');
       try {
-        const emailResponseBooker = await mailSender(
+        const emailResponse = await mailSender(
           token.email,
-          `Successfully Booked Vehicle at RoadConnect`,
+          `Successfully booked ${token.card.name}`,
           bookingEmail(req.body.name, `${token.card.name}`,req.body.image)
         );
-
-        const emailResponseOwner = await mailSender(
-          token.email,
-          `Your vehicle ${req.body.name} has been requested by ${token.card.name}`,
-          bookingEmail(req.body.name, `${token.card.name}`,req.body.image)
-        );
-
         // console.log('Email Sent Successfully....', emailResponse);
       } catch (error) {
         console.log(error);

@@ -11,7 +11,7 @@ const bookingSchema = new mongoose.Schema({
       } ,
       totalDays : {type : Number},
       totalAmount : {type : Number},
-      transactionId : {type : String},
+      transactionId : {type : String}, 
       driverRequired : {type : Boolean}
 
 

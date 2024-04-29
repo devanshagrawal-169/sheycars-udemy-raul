@@ -4,23 +4,27 @@ import { Link } from 'react-router-dom';
 import Logo from '../images/Logo-1.jpeg';
 import { useDispatch, useSelector } from 'react-redux';
 import { refresh } from 'aos';
-import { setLocation } from '../redux/actions/carsActions';
+import { setLocation, setType } from '../redux/actions/carsActions';
 // import { setLocation } from '../redux/reducers/locationSlice';
 
 function DefaultLayout(props) {
   const user = JSON.parse(localStorage.getItem('user'));
   const { cars } = useSelector((state) => state.carsReducer);
   const { location } = useSelector((state) => state.locationReducer);
-  const items = cars.map((car) => car.city);
-  const citys = [...new Set(items)]
+  const items1 = cars.map((car) => car.city);
+  const items2 = cars.map((car) => car.type);
+  const citys = [...new Set(items1)]
+  const types = [...new Set(items2)]
   // console.log(citys)
   const dispatch = useDispatch();
   // const [location, setLocation] = useState(user.city);
 
   function refreshCars() {
     let cities = document.getElementById('countries');
+    let typiies = document.getElementById('typies');
     // setLocation(cities.value)
     dispatch(setLocation(cities.value));
+    dispatch(setType(typiies.value));
   }
 
   const menu = (
@@ -61,21 +65,28 @@ function DefaultLayout(props) {
                   >
                     Select an option
                   </label>
-                  <div className="">
+                  <div className="flex gap-2 flex-row-reverse">
+                    <select
+                    id="typies"
+                    class="bg-gray-50 border w-[200px] border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    onClick={refreshCars}
+                  >
+                    <option selected value="all">Choose vehicle type</option>
+                    {types.map((item) => (
+                      <option value={item}>{item}</option>
+                    ))}
+                    
+                  </select>
                     <select
                     id="countries"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    class="bg-gray-50 border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     onClick={refreshCars}
                   >
                     <option selected value="all">Choose your city</option>
                     {citys.map((item) => (
                       <option value={item}>{item}</option>
                     ))}
-                    {/* <option selected>Choose a country</option>
-                      <option value="US">United States</option>
-                      <option value="CA">Canada</option>
-                      <option value="FR">France</option>
-                      <option value="DE">Germany</option> */}
+                    
                   </select>
 
                   </div>

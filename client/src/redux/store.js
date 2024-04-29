@@ -5,6 +5,7 @@ import { alertsReducer } from './reducers/alertsReducer';
 import { carsReducer } from './reducers/carsReducer';
 import { bookingsReducer } from './reducers/bookingsReducer';
 import  {locationReducer}  from './reducers/locationReducer';
+import { typeReducer } from './reducers/typeReducer';
 
 const composeEnhancers = composeWithDevTools({});
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     alertsReducer,
     bookingsReducer,
     locationReducer,
+    typeReducer
 });
 
 const store = createStore(

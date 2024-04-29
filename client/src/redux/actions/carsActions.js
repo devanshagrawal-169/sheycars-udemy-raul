@@ -112,3 +112,17 @@ export const setLocation = (reqObj) => async dispatch => {
 
 
 }
+export const setType = (reqObj) => async dispatch => {
+
+    dispatch({ type: 'LOADING', payload: true })
+
+    try {
+        dispatch({ type: 'setType', payload: reqObj })
+        dispatch({ type: 'LOADING', payload: false })
+    } catch (error) {
+        console.log(error)
+        dispatch({ type: 'LOADING', payload: false })
+    }
+
+
+}
